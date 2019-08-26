@@ -1,7 +1,14 @@
 export default {
+  defaultTile: {
+    glyph: "\u0020",
+    colorFg: "#ffffff",
+    colorBg: "#000000",
+  },
+
   labelFontFamily: 'Arial, Helvetica, sans-serif',
   labelFontWeight: 'bold',
   labelFontSize: 'medium',
+  smallLabelFontSize: 'small',
 
   tileFontFamily: 'Monaco, monospace',
   tileFontWeight: 'medium',

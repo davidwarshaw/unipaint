@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import properties from '../properties';
+import properties from '../../properties';
 
 import TileGrid from './TileGrid/TileGrid';
 

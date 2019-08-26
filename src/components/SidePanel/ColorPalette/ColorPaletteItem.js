@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import convert from 'color-convert';
 
-import properties from '../../properties';
+import properties from '../../../properties';
 
 const GridItem = styled.td.attrs((props) => ({
     style: {

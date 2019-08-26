@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
-import properties from '../../properties';
+import properties from '../../../properties';
 
 import TileRow from './TileRow';
 

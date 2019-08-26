@@ -1,5 +1,7 @@
 import immutable from 'immutable';
 
+import properties from '../properties';
+
 function tileKey(row, col) {
   return `${row}-${col}`;
 }
@@ -31,9 +33,61 @@ function intializeDoubleList(width, height, value) {
   return immutable.List(listRows);
 }
 
+function changeDoubleListSize(rows, newWidth, newHeight) {
+  const listRows = [...Array(newHeight).keys()]
+    .map((row) => {
+      const gridRow = [...Array(newWidth).keys()]
+        .map((col) => {
+          if (rows.get(row) && rows.get(row).get(col)) {
+            return rows.get(row).get(col);
+          }
+          return properties.defaultTile;
+        });
+      return immutable.List(gridRow);
+    });
+  return immutable.List(listRows);
+}
+
+function updateDoubleListEntry(rows, row, col, value) {
+  const rowEntry = rows.get(row);
+  const newRowEntry = rowEntry.set(col, value);
+  return rows.set(row, newRowEntry);
+}
+
 function newPreviewGrid(width, height) {
   return intializeDoubleList(width, height, null);
-};
+}
+
+function getCurrentPaintTile(state) {
+  const { colors, paletteColorFg, paletteColorBg, glyphs, paletteGlyph } = state;
+  const colorFg = colors.get(paletteColorFg.row).get(paletteColorFg.col);
+  const colorBg = colors.get(paletteColorBg.row).get(paletteColorBg.col);
+  const glyph = glyphs.get(paletteGlyph.row).get(paletteGlyph.col);
+  return { glyph, colorFg, colorBg };
+}
+
+function updateGridTile(base, row, col, tile) {
+  return this.updateDoubleListEntry(base, row, col, tile);
+}
+
+function updateGridTiles(base, points, tile) {
+  let nextGrid = base;
+  for (const point of points) {
+    const rowList = nextGrid.get(point.row);
+    const newRowList = rowList.set(point.col, tile);
+    nextGrid = nextGrid.set(point.row, newRowList);
+  }
+  return nextGrid;
+}
+
+function paintWithInterpolation(base, row, col, tile, lastRow, lastCol) {
+  const interpolation = line(lastRow, lastCol, row, col);
+  if (interpolation.length > 2) {
+    return this.updateGridTiles(base, interpolation, tile);
+  } else {
+    return this.updateGridTile(base, row, col, tile);
+  }
+}
 
 function coalesceGridLayers(width, height, layers) {
   const listRows = [...Array(height).keys()]
@@ -161,7 +215,13 @@ export default {
   range,
   immutablizeDoubleArray,
   intializeDoubleList,
+  changeDoubleListSize,
+  updateDoubleListEntry,
   newPreviewGrid,
+  getCurrentPaintTile,
+  updateGridTile,
+  updateGridTiles,
+  paintWithInterpolation,
   coalesceGridLayers,
   circle,
   line,
