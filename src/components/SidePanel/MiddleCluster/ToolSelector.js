@@ -22,7 +22,6 @@ const IconContainer = styled.button`
   background-color: ${props => props.bgColor};
 
   width: ${props => props.styles.size};
-  height: ${props => props.styles.size};
   display: flex;
   align-items: center;
   text-align: center;

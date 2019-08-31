@@ -19,9 +19,10 @@ const MenuItem = styled.button`
   grid-row: ${props => props.row};
   grid-column: ${props => props.col};
   width: ${props => props.styles.iconSize};
-  height: ${props => props.styles.iconSize};
-  line-height: ${props => props.styles.iconSize};
-  text-align: left;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 100%;
 
   font-family: ${props => props.styles.labelFontFamily};
   font-weight: ${props => props.styles.labelFontWeight};
