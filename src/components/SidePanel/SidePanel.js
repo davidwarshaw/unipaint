@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
-import properties from '../properties';
+import properties from '../../properties';
 
-import ColorPalette from './ColorPalette/ColorPalette'
-import MiddleCluster from './MiddleCluster/MiddleCluster'
-import GlyphPalette from './GlyphPalette/GlyphPalette'
-import FileMenu from './FileMenu/FileMenu'
+import ColorPalette from './ColorPalette/ColorPalette';
+import MiddleCluster from './MiddleCluster/MiddleCluster';
+import GlyphPalette from './GlyphPalette/GlyphPalette';
+import FileMenu from './FileMenu/FileMenu';
+import ViewMenu from './ViewMenu/ViewMenu';
 
 const StyledSidePanel = styled.div`
   height: 100%;
@@ -45,8 +46,11 @@ class SidePanel extends PureComponent {
     };
     const {
       colors, glyphs, colorFg, colorBg, glyph, paletteColorFg, paletteColorBg, fgColorSelected,
-      paletteGlyph, selectedTool, setColor, setColorFgSelected, setGlyph, setColorValue, setGlyphValue,
-      setSelectedTool, newFile, loadJsonFile, saveJsonFile, savePngFile,
+      paletteGlyph, selectedTool,
+      resetGridWidth, resetGridHeight,
+      setColor, setColorFgSelected, setGlyph, setColorValue, setGlyphValue, setSelectedTool,
+      resize,  resizeReset, setResizeWidth, setResizeHeight,
+      newFile, loadJsonFile, saveJsonFile, savePngFile,
     } = this.props;
     return (
       <StyledSidePanel styles={styles} >
@@ -59,10 +63,13 @@ class SidePanel extends PureComponent {
           setColorFgSelected={setColorFgSelected} setSelectedTool={setSelectedTool}
           setColorValue={setColorValue} setGlyphValue={setGlyphValue} />
         <GlyphPalette items={glyphs} paletteGlyph={paletteGlyph} setGlyph={setGlyph} />
+        <ViewMenu resetGridWidth={resetGridWidth} resetGridHeight={resetGridHeight}
+          resize={resize} resizeReset={resizeReset}
+          setResizeWidth={setResizeWidth} setResizeHeight={setResizeHeight} />
         <FileMenu newFile={newFile} loadJsonFile={loadJsonFile} saveJsonFile={saveJsonFile}
           savePngFile={savePngFile}/>
         <SidePanelFooter>
-          unipaint v0.1 2019-08-23
+          unipaint v1.1 2019-08-30
         </SidePanelFooter>
       </StyledSidePanel>
     );

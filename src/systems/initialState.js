@@ -1,8 +1,10 @@
 import immutable from 'immutable';
 
+import properties from '../properties';
+
 import tileMath from './tileMath';
 
-import standardColorPalette from './standardColorPalette.json';
+import standardColorPalette from '../data/standardColorPalette.json';
 
 function createInitialState() {
 
@@ -10,9 +12,6 @@ function createInitialState() {
 
   const defaultGridWidth = 44;
   const defaultGridHeight = 36;
-  const defaultGlyph = '\u0020';
-  const defaultColorFg = '#ffffff';
-  const defaultColorBg = '#000000';
 
   const state = {
     // TileGrid
@@ -20,12 +19,12 @@ function createInitialState() {
     gridY: 10,
     gridWidth: defaultGridWidth,
     gridHeight: defaultGridHeight,
+    resetGridWidth: defaultGridWidth,
+    resetGridHeight: defaultGridHeight,
     gridTilePixels: { width: 12, height: 16 },
     gridScale: 1,
     fontStyle: "",
-    base: initializeGrid(
-      defaultGridWidth, defaultGridHeight,
-      defaultGlyph, defaultColorFg, defaultColorBg),
+    base: initializeGrid(defaultGridWidth, defaultGridHeight, properties.defaultTile),
     preview: tileMath.newPreviewGrid(defaultGridWidth, defaultGridHeight),
 
     // ColorPalette
@@ -74,12 +73,7 @@ function initializeGlyphs(size) {
   return immutable.List(glyphRows);
 }
 
-function initializeGrid(width, height, glyph, colorFg, colorBg) {
-  const defaultTile = {
-    glyph,
-    colorFg,
-    colorBg,
-  };
+function initializeGrid(width, height, defaultTile) {
   return tileMath.intializeDoubleList(width, height, defaultTile);
 }
 
