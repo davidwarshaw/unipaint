@@ -69,7 +69,7 @@ class SidePanel extends PureComponent {
         <FileMenu newFile={newFile} loadJsonFile={loadJsonFile} saveJsonFile={saveJsonFile}
           savePngFile={savePngFile}/>
         <SidePanelFooter>
-          unipaint v1.1 2019-08-30
+          unipaint v1.2 2019-08-31
         </SidePanelFooter>
       </StyledSidePanel>
     );

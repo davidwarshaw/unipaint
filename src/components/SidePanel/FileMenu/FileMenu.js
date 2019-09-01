@@ -58,8 +58,6 @@ class FileMenu extends PureComponent {
         </MenuItem>
         <MenuItem styles={styles} onClick={this.saveJsonFile}
           data-tip="Save the current drawing as a unipaint json file" >Save JSON</MenuItem>
-        <MenuItem styles={styles} onClick={this.savePngFile}
-          data-tip="Not implemented" >Export to PNG</MenuItem>
       </StyledFileMenu>
     );
   }

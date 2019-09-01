@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import FileSaver from 'file-saver';
-import htmlToImage from 'html-to-image';
 
 import properties from '../properties';
 
@@ -207,11 +206,6 @@ class App extends PureComponent {
     const stringBase = JSON.stringify(this.state.base);
     const blob = new Blob([stringBase], { type: 'application/json;charset=utf-8' });
     FileSaver.saveAs(blob, properties.defaultSaveJsonFilename);
-  }
-
-  savePngFile = () => {
-    // htmlToImage.toPng(document.getElementById(properties.gridElementId))
-    //   .then(dataUrl => FileSaver.saveAs(dataUrl, properties.defaultSavePngFilename));
   }
 
   render() {
