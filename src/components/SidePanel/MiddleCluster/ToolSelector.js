@@ -76,7 +76,7 @@ class ToolSelector extends PureComponent {
           <ToolIcon name={'rectangle'} fgColor={fgForTool('rectangle')} />
         </IconContainer>
         <IconContainer styles={styles} row={4} col={2} bgColor={bgForTool('circle')}
-          onClick={() => this.setSelectedTool('circle')} data-tip="Not implemented" >
+          onClick={() => this.setSelectedTool('circle')} data-tip="Paint an ellipse with the current colors and glyph" >
           <ToolIcon name={'circle'} fgColor={fgForTool('circle')} />
         </IconContainer>
       </ToolGrid>
