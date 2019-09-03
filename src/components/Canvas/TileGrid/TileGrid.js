@@ -36,11 +36,12 @@ class TileGrid extends PureComponent {
       tileFontWeight: properties.tileFontWeight,
       tileFontSize: properties.tileFontSize,
     };
-    const { top, left, grid, gridTilePixels, toolDown, toolMove, toolUp, toolOver } = this.props;
+    const {
+      top, left, grid, numGridRows, numGridCols, gridTilePixels,
+      toolDown, toolMove, toolUp, toolOver
+    } = this.props;
 
     const gridTileHeight = `${gridTilePixels.height}px`;
-    const numGridRows = grid.size;
-    const numGridCols = grid.get(0).size;
 
     return (
       <Grid id={properties.gridElementId} styles={styles} top={top} left={left}

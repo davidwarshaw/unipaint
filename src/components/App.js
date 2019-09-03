@@ -43,31 +43,15 @@ class App extends PureComponent {
     }
   }
 
-  updateDimensions = () => {
-    const { gridWidth, gridHeight, gridTilePixels } = this.state;
-    const pixelWidth = gridWidth * gridTilePixels.width;
-    const pixelHeight = gridHeight * gridTilePixels.height;
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight;
-    console.log(`canvasWidth: ${canvasWidth} canvasHeight: ${canvasHeight}`);
-    console.log(`pixelWidth: ${pixelWidth} pixelHeight: ${pixelHeight}`);
-    const gridX = 20;// + Math.round((canvasWidth / 2) - (pixelWidth / 2)) + properties.sidePanelWidth;
-    const gridY = 20;// + Math.round((canvasHeight / 2) - (pixelHeight / 2));
-    this.setState({ gridX, gridY });
-  }
-
   saveToLocalStorage = () => {
     const stateString = JSON.stringify(this.state);
     localStorage.setItem(properties.localStorageKey, stateString);
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
     window.addEventListener('beforeunload', this.saveToLocalStorage);
-    this.updateDimensions();
   }
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
     window.removeEventListener('beforeunload', this.saveToLocalStorage);
   }
 
@@ -239,8 +223,7 @@ class App extends PureComponent {
           newFile={this.newFile} loadJsonFile={this.loadJsonFile} saveJsonFile={this.saveJsonFile}
           savePngFile={this.savePngFile} />
         <Canvas
-          gridX={this.state.gridX} gridY={this.state.gridY} grid={grid}
-          gridTilePixels={this.state.gridTilePixels}
+          grid={grid} gridTilePixels={this.state.gridTilePixels}
           toolDown={this.toolDown} toolMove={this.toolMove} toolUp={this.toolUp}
           toolOver={this.toolOver} />
       </Container>

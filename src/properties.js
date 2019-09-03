@@ -17,6 +17,8 @@ export default {
   sidePanelWidth: 260,
   sidePanelBgColor: '#eeeeee',
 
+  canvasMargin: 20,
+
   colorSwatchSize: 12,
 
   iconSize: '40px',

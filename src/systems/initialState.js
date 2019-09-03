@@ -15,8 +15,6 @@ function createInitialState() {
 
   const state = {
     // TileGrid
-    gridX: 10,
-    gridY: 10,
     gridWidth: defaultGridWidth,
     gridHeight: defaultGridHeight,
     resetGridWidth: defaultGridWidth,
